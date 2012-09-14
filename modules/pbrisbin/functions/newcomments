@@ -15,5 +15,6 @@ select
   "userEmail",
   substring("content", 1, 60)
 from "SqlComment"
+where "userEmail" != 'pbrisbin@gmail.com'
 order by "timeStamp" asc;
 EOF
