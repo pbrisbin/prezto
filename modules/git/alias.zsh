@@ -49,6 +49,14 @@ alias gfc='git clone'
 alias gfm='git pull'
 alias gfr='git pull --rebase'
 
+# Grep (g)
+alias gg='git grep'
+alias ggi='git grep --ignore-case'
+alias ggl='git grep --files-with-matches'
+alias ggL='git grep --files-without-matches'
+alias ggv='git grep --invert-match'
+alias ggw='git grep --word-regexp'
+
 # Index (i)
 alias gia='git add'
 alias giA='git add --patch'
@@ -72,7 +80,7 @@ alias gkT='gkt $(gkl)'
 
 # Log (l)
 git_log_format_medium='--pretty=format:%C(bold)Commit:%C(reset) %C(green)%H%C(red)%d%n%C(bold)Author:%C(reset) %C(cyan)%an <%ae>%n%C(bold)Date:%C(reset)   %C(blue)%ai (%ar)%C(reset)%n%+B'
-git_log_format_oneline='--pretty=format:%C(green)%h%C(reset) %s%n'
+git_log_format_oneline='--pretty=format:%C(green)%h%C(reset) %s%C(red)%d%C(reset)%n'
 git_log_format_brief='--pretty=format:%C(green)%h%C(reset) %s%n%C(blue)(%ar by %an)%C(red)%d%C(reset)%n'
 
 alias gl='git log --topo-order ${git_log_format_medium}'
@@ -96,8 +104,8 @@ alias gpf='git push --force'
 alias gpa='git push --all'
 alias gpA='git push --all && git push --tags'
 alias gpt='git push --tags'
-alias gpc='git push --set-upstream origin "$(git-branch-current)"'
-alias gpp='git pull origin "$(git-branch-current)" && git push origin "$(git-branch-current)"'
+alias gpc='git push --set-upstream origin "$(git-branch-current 2> /dev/null)"'
+alias gpp='git pull origin "$(git-branch-current 2> /dev/null)" && git push origin "$(git-branch-current 2> /dev/null)"'
 
 # Rebase (r)
 alias gr='git rebase'
@@ -115,7 +123,7 @@ alias gRm='git remote rename'
 alias gRu='git remote update'
 alias gRc='git remote prune'
 alias gRs='git remote show'
-alias gRb='git-hub'
+alias gRb='git-hub-browse'
 
 # Stash (s)
 alias gs='git stash'
@@ -129,6 +137,7 @@ alias gsp='git stash pop'
 alias gsr='git-stash-recover'
 alias gss='git stash save --include-untracked'
 alias gsS='git stash save --patch --no-keep-index'
+alias gsw='git stash save --include-untracked --keep-index'
 
 # Submodule (S)
 alias gS='git submodule'
@@ -136,9 +145,11 @@ alias gSa='git submodule add'
 alias gSf='git submodule foreach'
 alias gSi='git submodule init'
 alias gSl='git submodule status'
+alias gSm='git-submodule-move'
 alias gSs='git submodule sync'
 alias gSu='git submodule update --init --recursive'
 alias gSU='git submodule foreach git pull origin master'
+alias gSx='git-submodule-remove'
 
 # Working Copy (w)
 alias gws='git status --short'
@@ -151,7 +162,6 @@ alias gwc='git clean -n'
 alias gwC='git clean -f'
 alias gwx='git rm -r'
 alias gwX='git rm -rf'
-alias gwg='git grep'
 
 # Using git-svn
 alias gspull='git stash && git svn rebase && git stash apply'
