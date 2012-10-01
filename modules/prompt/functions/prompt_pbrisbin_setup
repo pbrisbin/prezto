@@ -27,24 +27,23 @@ function prompt_pbrisbin_setup() {
   autoload -Uz add-zsh-hook
   add-zsh-hook precmd prompt_pbrisbin_precmd
 
-  zstyle ':omz:module:editor' completing '...'
-  zstyle ':omz:module:editor:keymap' alternate '<<<'
+  zstyle ':prezto:module:editor' completing '...'
+  zstyle ':prezto:module:editor:keymap' alternate '<<<'
 
-  zstyle ':omz:module:git' branch    '%F{red}%b%f'
-  zstyle ':omz:module:git' added     '%F{yellow}+%f'
-  zstyle ':omz:module:git' deleted   '%F{red}x%f'
-  zstyle ':omz:module:git' modified  '%F{green}*%f'
-  zstyle ':omz:module:git' renamed   '%F{yellow}➜%f'
-  zstyle ':omz:module:git' unmerged  '%F{red}!%f'
-  zstyle ':omz:module:git' untracked '%F{cyan}+%f'
-  zstyle ':omz:module:git' info \
+  zstyle ':prezto:module:git' branch    '%F{red}%b%f'
+  zstyle ':prezto:module:git' added     '%F{yellow}+%f'
+  zstyle ':prezto:module:git' deleted   '%F{red}x%f'
+  zstyle ':prezto:module:git' modified  '%F{green}*%f'
+  zstyle ':prezto:module:git' renamed   '%F{yellow}➜%f'
+  zstyle ':prezto:module:git' unmerged  '%F{red}!%f'
+  zstyle ':prezto:module:git' untracked '%F{cyan}+%f'
+  zstyle ':prezto:module:git' info \
     'prompt'  ' %%B%F{cyan}(%f%b%%B%F{cyan})%f%%b' \
     'rprompt' ' %%B%U%a%d%r%m%u%%b'
 
    PROMPT=' %F{cyan}%c%f${git_info_fast[prompt]} '
   RPROMPT='${editor_info[keymap]} %(?::%B%F{red}%? %f%b) ${git_info_fast[rprompt]} '
   SPROMPT='correct %F{red}%R%f to %F{green}%r%f [nyae]? '
-
 }
 
 prompt_pbrisbin_setup "$@"

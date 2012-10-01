@@ -11,28 +11,28 @@
 #   Define the following styles in a prompt theme setup function.
 #
 #     # %a - Indicator to notify of added files.
-#     zstyle ':omz:module:git' added 'added:%a'
+#     zstyle ':prezto:module:git' added 'added:%a'
 #
 #     # %b - Branch name.
-#     zstyle ':omz:module:git' branch 'branch:%b'
+#     zstyle ':prezto:module:git' branch 'branch:%b'
 #
 #     # %d - Indicator to notify of deleted files.
-#     zstyle ':omz:module:git' deleted 'deleted:%d'
+#     zstyle ':prezto:module:git' deleted 'deleted:%d'
 #
 #     # %m - Indicator to notify of modified files.
-#     zstyle ':omz:module:git' modified 'modified:%m'
+#     zstyle ':prezto:module:git' modified 'modified:%m'
 #
 #     # %r - Indicator to notify of renamed files.
-#     zstyle ':omz:module:git' renamed 'renamed:%r'
+#     zstyle ':prezto:module:git' renamed 'renamed:%r'
 #
 #     # %U - Indicator to notify of unmerged files.
-#     zstyle ':omz:module:git' unmerged 'unmerged:%U'
+#     zstyle ':prezto:module:git' unmerged 'unmerged:%U'
 #
 #     # %u - Indicator to notify of untracked files.
-#     zstyle ':omz:module:git' untracked 'untracked:%u'
+#     zstyle ':prezto:module:git' untracked 'untracked:%u'
 #
 #     # Prompts.
-#     zstyle ':omz:module:git' info \
+#     zstyle ':prezto:module:git' info \
 #       'prompt'  ' git:(%b)' \
 #       'rprompt' '%a%d%m%r%u%U'
 #
@@ -75,7 +75,7 @@ function git-info-fast {
 
   # Not in a repo.
   if [[ ! -e ./.git ]]; then
-    zstyle -a ':omz:module:git' info 'info_formats'
+    zstyle -a ':prezto:module:git' info 'info_formats'
     for info_format in ${(k)info_formats}; do
       git_info_fast[$info_format]=''
     done
@@ -102,48 +102,48 @@ function git-info-fast {
   # Format branch.
   branch="${$(git symbolic-ref -q HEAD)##refs/heads/}"
   if [[ -n "$branch" ]]; then
-    zstyle -s ':omz:module:git' branch 'branch_format'
+    zstyle -s ':prezto:module:git' branch 'branch_format'
     zformat -f branch_formatted "$branch_format" "b:$branch"
   fi
 
   # Format added.
   if (( $added > 0 )); then
-    zstyle -s ':omz:module:git' added 'added_format'
+    zstyle -s ':prezto:module:git' added 'added_format'
     zformat -f added_formatted "$added_format" "a:$added_format"
   fi
 
   # Format deleted.
   if (( $deleted > 0 )); then
-    zstyle -s ':omz:module:git' deleted 'deleted_format'
+    zstyle -s ':prezto:module:git' deleted 'deleted_format'
     zformat -f deleted_formatted "$deleted_format" "d:$deleted_format"
   fi
 
   # Format modified.
   if (( $modified > 0 )); then
-    zstyle -s ':omz:module:git' modified 'modified_format'
+    zstyle -s ':prezto:module:git' modified 'modified_format'
     zformat -f modified_formatted "$modified_format" "m:$modified"
   fi
 
   # Format renamed.
   if (( $renamed > 0 )); then
-    zstyle -s ':omz:module:git' renamed 'renamed_format'
+    zstyle -s ':prezto:module:git' renamed 'renamed_format'
     zformat -f renamed_formatted "$renamed_format" "r:$renamed"
   fi
 
   # Format unmerged.
   if (( $unmerged > 0 )); then
-    zstyle -s ':omz:module:git' unmerged 'unmerged_format'
+    zstyle -s ':prezto:module:git' unmerged 'unmerged_format'
     zformat -f unmerged_formatted "$unmerged_format" "U:$unmerged"
   fi
 
   # Format untracked.
   if (( $untracked > 0 )); then
-    zstyle -s ':omz:module:git' untracked 'untracked_format'
+    zstyle -s ':prezto:module:git' untracked 'untracked_format'
     zformat -f untracked_formatted "$untracked_format" "u:$untracked"
   fi
 
   # Format info.
-  zstyle -a ':omz:module:git' info 'info_formats'
+  zstyle -a ':prezto:module:git' info 'info_formats'
   for info_format in ${(k)info_formats}; do
     zformat -f REPLY "$info_formats[$info_format]" \
       "U:$unmerged_formatted" \
